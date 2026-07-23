@@ -1,7 +1,7 @@
-import random
-import math
+
 import pywhatkit as what
 import time as t
+from datetime import datetime, timedelta
 
 Menu={
     "100":["CHICKEN BRIYANI",149],
@@ -51,7 +51,7 @@ def order():
 
     name=input("Enter Your Name:")
     
-    phone=int(input("Enter Your phone Number:"))
+    phone=input("Enter Your phone Number:")
     order_type=int(input("\n1.dine-in\n2.takeaway\nSelect Your Order Type:"))
     
     customer_cart=[]
@@ -130,11 +130,16 @@ def order():
         else:
             print("incorrect input try again")
 
-    what.sendwhatmsg_instantly(
-        phone_no=phone,
-        message=f"Dear customer {name} the bill of the food in SLM{receipt}",
-        wait_time=10
-    )
+    now = datetime.now() + timedelta(minutes=2)
+    what .sendwhatmsg(
+        phone,
+        f"dear customer {name}\nYour order is ready !\n{receipt} ",
+        now.hour,
+        now.minute
+        )
+
+
+        
             
 
 
